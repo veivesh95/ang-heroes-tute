@@ -1,0 +1,162 @@
+CREATE SCHEMA `st2` ;
+
+CREATE TABLE `admin` (
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `name` char(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `contact` int(11) NOT NULL,
+  `registered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`username`)
+) 
+
+INSERT INTO st2.`admin` (username, password, `name`, email, contact, registered) 
+	VALUES ('admin1', '123abc', 'Ameer', 'admin1@movieworld.com', 772831473, '2016-02-17 22:42:40.0');
+INSERT INTO st2.`admin` (username, password, `name`, email, contact, registered) 
+	VALUES ('admin2', 'abc123', 'divvya', 'admin2@movieworld.com', 777430837, '2015-03-13 00:00:00.0');
+INSERT INTO st2.`admin` (username, password, `name`, email, contact, registered) 
+	VALUES ('admin3', '5678', 'kaushek', 'admin3@movieworld.com', 756225837, '2014-01-23 00:00:00.0');
+INSERT INTO st2.`admin` (username, password, `name`, email, contact, registered) 
+	VALUES ('admin4', 'abcdef', 'Shahik', 'admin4@movieworld.com', 718337953, '2011-01-03 01:10:49.0');
+INSERT INTO st2.`admin` (username, password, `name`, email, contact, registered) 
+	VALUES ('admin5', '12345', 'veivesh', 'admin5@movieworld.com', 772359374, '2011-01-03 01:08:14.0');
+
+
+
+
+CREATE TABLE `customer` (
+  `customerId` varchar(50) NOT NULL,
+  `fname` varchar(40) NOT NULL,
+  `lname` varchar(40) NOT NULL,
+  `nic` varchar(20) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `contact` varchar(10) NOT NULL,
+  `payType` char(20) NOT NULL,
+  `accType` char(20) NOT NULL,
+  `regDate` varchar(20) NOT NULL,
+  PRIMARY KEY (`customerId`)
+) 
+
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('1', 'Wickram', 'Bagawathi', '951515151V', 'Wellawatte', '077392459', 'Cash', 'Premium', '2016-03-22');
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('2', 'Matthew', 'Murdock', '934251164V', '234, Hell''s Kitchen	', '077377183', 'Cash', 'Normal', '2014-08-19');
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('3', 'Damien', 'Chinniah', '952323245V', 'Sornam Road', '077752648', 'Card', 'Normal', '2010-01-18');
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('4', 'Sherlock', 'Holmes', '892454121V', 'Baker Street', '077245687', 'Cash', 'Normal', '2009-10-30');
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('5', 'Nahanaa', 'Gunasekaran', '771542354V', 'Soysapura Road', '077987462', 'Card', 'Premium', '2013-12-30');
+INSERT INTO st2.customer (`customerId`, fname, lname, nic, address, contact, `payType`, `accType`, `regDate`) 
+	VALUES ('6', 'Munsif', 'Musthafa', '952645626V', 'Wellwatte', '071265929', 'Cash', 'Normal', '2012-01-09');
+
+
+CREATE TABLE `movie` (
+  `movieID` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `imgId` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` char(50) CHARACTER SET utf8 NOT NULL,
+  `price` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `year` char(4) CHARACTER SET utf8 NOT NULL,
+  `lead` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `genre` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `duration` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `rating` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `addedBy` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `total` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `available` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `image` longblob,
+  PRIMARY KEY (`movieID`),
+  KEY `added_idx` (`addedBy`),
+  CONSTRAINT `added` FOREIGN KEY (`addedBy`) REFERENCES `admin` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) 
+
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('1', '1', 'Kung Fu Panda 3', '90', '2016', 'Jack Black', 'Comedy', '01:35:00', '7.5', 'admin2', '9', '3', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('10', '10', 'Spotlight', '125', '2015', 'Mark Ruffalo', 'Biography', '02:09:00', '8.2', 'admin1', '7', '2', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('11', '11', 'Inside Out', '85', '2015', 'Amy Poehlar', 'Animation', '01:42:00', '8.3', 'admin5', '2', '3', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('12', '12', 'Mad Max: Fury Road', '120', '2015', 'Tom Hardy', 'Action', '02:00:00', '8.1', 'admin5', '9', '1', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('13', '13', 'The Imitation Game', '130', '2014', 'Benedict Cumberbatch', 'Biography', '01:54:00', '8.1', 'admin1', '4', '5', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('14', '14', 'The Dark Knight', '65', '2008', 'Christian Bale', 'Action', '02:32:00', '9', 'admin3', '9', '2', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('15', '15', 'The Dark Knight Rises', '110', '2012', 'Christian Bale', 'Action', '02:44:00', '8.5', 'admin3', '15', '3', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('16', '16', 'Batman Begins', '100', '2005', 'Christian Bale', 'Action', '02:20:00', '8.3', 'admin3', '4', '6', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('17', '17', 'The Shawshank Redemption', '80', '1994', 'Tim Robbins', 'Drama', '02:22:00', '9.3', 'admin5', '10', '2', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('18', '18', 'Goosebumps', '90', '2015', 'Jack Black', 'Horror', '01:43:01', '6.4', 'admin2', '5', '5', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('19', '19', 'The Babadook', '100', '2014', 'Essie Davis', 'Horror', '01:35:00', '6.8', 'admin1', '6', '0', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('2', '2', 'Deadpool', '110', '2016', 'Ryan Reynolds', 'Comedy', '01:48:00', '8.4', 'admin1', '10', '2', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('20', '20', 'Maya', '80', '2015', 'Nayantara', 'Thriller', '02:45:15', '6.9', 'Admin3', '5', '1', NULL);
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('29', '0029', 'Naan', '130', '2012', 'Vijay Antony', 'thriller', '2:02:08', '9.9', 'admin2', '10', '8', NULL);
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('3', '3', 'The Hunger Games: Mocking Jay', '70', '2015', 'Jennifer Lawrence', 'Adventure', '02:03:00', '6.8', 'admin1', '6', '4', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('4', '4', 'Forrest Gump', '120', '1994', 'Tom Hanks', 'Drama', '02:25:00', '8.8', 'admin3', '4', '1', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('6', '6', 'Interstellar', '100', '2014', 'Matthew McConaughey', 'Adventure', '02:49:00', '8.6', 'admin5', '9', '3', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('7', '7', 'The Theory of Everything', '120', '2014', 'Eddie Redmayne', 'Biography', '02:03:00', '7.7', 'admin5', '12', '2', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('8', '8', 'The Hateful Eight', '130', '2015', 'Samuel L.Jackson', 'Crime', '03:07:00', '8', 'admin1', '11', '1', x'');
+INSERT INTO st2.movie (`movieID`, `imgId`, `name`, price, `year`, lead, genre, duration, rating, `addedBy`, total, available, image) 
+	VALUES ('9', '9', 'The Martian', '90', '2015', 'Matt Damon', 'Adventure', '02:24:00', '8.1', 'admin2', '10', '6', x'');
+
+
+CREATE TABLE `transactions` (
+  `TRANSACTION_ID` varchar(20) NOT NULL,
+  `CUSTOMER_ID` varchar(20) NOT NULL,
+  `MOVIE_ID` varchar(20) NOT NULL,
+  `RENTED` varchar(40) NOT NULL,
+  `DUE_DATE` varchar(40) NOT NULL,
+  `FEE` double NOT NULL,
+  `ADDITIONAL_FEE` double NOT NULL,
+  `STATUS` varchar(40) NOT NULL,
+  PRIMARY KEY (`TRANSACTION_ID`),
+  KEY `movie_idx` (`MOVIE_ID`),
+  KEY `customer_idx` (`CUSTOMER_ID`)
+) 
+
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('1', '1', '12', '2011-01-01', '2011-02-03', 100.0, 100.0, 'Rented');
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('2', '2', '45', '2015-05-05', '2015-06-07', 100.0, 200.0, 'Settled');
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('3', '2', '66', '2016-01-04', '2016-01-20', 100.0, 200.0, 'Settled');
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('4', '3', '23', '2016-05-06', '2016-05-09', 100.0, 200.0, 'Returned');
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('5', '1', '10', '2011-01-20', '2011-01-31', 100.0, 200.0, 'Returned');
+INSERT INTO st2.transactions (`TRANSACTION_ID`, `CUSTOMER_ID`, `MOVIE_ID`, `RENTED`, `DUE_DATE`, `FEE`, `ADDITIONAL_FEE`, `STATUS`) 
+	VALUES ('6', '4', '29', 'Apr 7, 2016', 'Apr 21, 2016', 130.0, 140.0, 'Returned');
+
+
+CREATE TABLE `userrequest` (
+  `cusId` varchar(50) NOT NULL,
+  `message` varchar(75) NOT NULL,
+  `recDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cusId`,`recDate`),
+  CONSTRAINT `customer` FOREIGN KEY (`cusId`) REFERENCES `customer` (`customerId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) 
+
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'Requesting a copy of Divergent 2015', '2016-04-03 14:09:51.0');
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'The User needs to update his information', '2016-04-03 14:09:55.0');
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'Hello Admin', '2016-04-03 14:10:31.0');
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'Requesting a copy of ''Chandramukhi'' 2005', '2016-04-03 14:29:32.0');
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'The User needs to update his information', '2016-04-03 14:50:00.0');
+INSERT INTO st2.userrequest (`cusId`, message, `recDate`) 
+	VALUES ('3', 'The User needs to update his information', '2016-04-03 19:21:11.0');

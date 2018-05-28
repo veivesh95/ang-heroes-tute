@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="adminreport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a808c17-3f75-4ebc-9c89-68c899e23dec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="username" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     admin.`username` AS admin_username,
+     admin.`password` AS admin_password,
+     admin.`name` AS admin_name,
+     admin.`email` AS admin_email,
+     admin.`contact` AS admin_contact,
+     admin.`registered` AS admin_registered
+FROM
+     `admin` admin
+where  admin.`username` =$P{username}]]>
+	</queryString>
+	<field name="admin_username" class="java.lang.String"/>
+	<field name="admin_password" class="java.lang.String"/>
+	<field name="admin_name" class="java.lang.String"/>
+	<field name="admin_email" class="java.lang.String"/>
+	<field name="admin_contact" class="java.lang.Integer"/>
+	<field name="admin_registered" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="358575af-be6d-47e9-8b37-fb91237d99cb"/>
+				<imageExpression><![CDATA["leaf_banner_violet.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="d1c0cd8d-5dd2-46cb-a7bd-054146420858"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Movie World]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="46" width="200" height="22" uuid="b0138960-0e55-45d2-af10-6a55184aae37"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Admin Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="97b9349b-b5e6-4e80-b28f-e5064ddf03e0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="92" height="15" uuid="90300108-d713-4dfb-abec-bcc4180b6783"/>
+				<text><![CDATA[admin_username]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="19" width="92" height="15" uuid="ed0c9436-9c18-4be2-b699-d65c942886ac"/>
+				<text><![CDATA[admin_password]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15" uuid="6c425405-9e99-4164-8d5a-b0ae4e8a035a"/>
+				<text><![CDATA[admin_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="92" height="15" uuid="b208f26e-e3bc-4e6f-b50a-5ba883f8270e"/>
+				<text><![CDATA[admin_email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="19" width="92" height="15" uuid="60653495-6bb1-49f8-ac80-e0d370ca6b7b"/>
+				<text><![CDATA[admin_contact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="19" width="92" height="15" uuid="d51b38d2-7999-46c6-89a5-f80deb1ee9df"/>
+				<text><![CDATA[admin_registered]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="010f93b5-55da-4e66-8266-4d65b2317189"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="92" height="15" uuid="7441b069-3adf-4955-a631-ad8404295f15"/>
+				<textFieldExpression><![CDATA[$F{admin_username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="92" y="0" width="92" height="15" uuid="1bf93b3d-3f07-4167-8c5c-65d242129004"/>
+				<textFieldExpression><![CDATA[$F{admin_password}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="7ea38459-fa51-4ae8-8f92-cc1bf590a503"/>
+				<textFieldExpression><![CDATA[$F{admin_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="92" height="15" uuid="33e503b5-e8cc-4ab1-aa15-72510d7e749f"/>
+				<textFieldExpression><![CDATA[$F{admin_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="368" y="0" width="92" height="15" uuid="142cfec1-e107-41d9-8c9e-a0b3ef3807cd"/>
+				<textFieldExpression><![CDATA[$F{admin_contact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="460" y="0" width="92" height="15" uuid="353b96c9-f09d-4e5c-82dd-3909635d3752"/>
+				<textFieldExpression><![CDATA[$F{admin_registered}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="00508947-0187-4cb8-878e-81b00800f907"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="1a51dbf8-0e2c-4cb2-a242-da42c3a7f4a7"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="0d9b5590-ed60-4bf5-a071-9051a4b1abab"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="98ed2efc-2619-46ef-8280-3586895cef2f"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
